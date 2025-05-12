@@ -1,0 +1,128 @@
+Sure! Here's a step-by-step guide to develop a simple containerized application using Docker, along with the expected output after each step.
+
+🔧 Objective:
+Develop and run a simple containerized Python Flask application using Docker.
+
+✅ Step-by-Step Implementation
+Step 1: Create Project Directory
+Create a new folder for your project.
+
+bash
+Copy
+Edit
+mkdir docker-flask-app
+cd docker-flask-app
+Expected Output:
+
+bash
+Copy
+Edit
+# Just creates and enters the directory, no output shown
+Step 2: Create a Simple Flask App
+Create a file named app.py:
+
+python
+Copy
+Edit
+# app.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return "Hello, Docker from Flask!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+Expected Output:
+No output yet (you've just written code).
+
+Step 3: Create requirements.txt File
+text
+Copy
+Edit
+Flask==2.3.2
+Expected Output:
+Again, just a file creation step.
+
+Step 4: Create a Dockerfile
+Dockerfile
+Copy
+Edit
+# Dockerfile
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]
+Expected Output:
+No output, just file creation.
+
+Step 5: Build the Docker Image
+bash
+Copy
+Edit
+docker build -t flask-docker-app .
+Expected Output:
+
+bash
+Copy
+Edit
+Sending build context to Docker daemon  5.12kB
+Step 1/6 : FROM python:3.9-slim
+ ---> <image-id>
+Step 2/6 : WORKDIR /app
+ ---> Using cache
+ ---> <image-id>
+Step 3/6 : COPY requirements.txt requirements.txt
+ ---> <image-id>
+Step 4/6 : RUN pip install -r requirements.txt
+ ---> Installing collected packages: Flask
+ ---> Successfully installed Flask-2.3.2
+Step 5/6 : COPY . .
+ ---> <image-id>
+Step 6/6 : CMD ["python", "app.py"]
+ ---> <image-id>
+Successfully tagged flask-docker-app:latest
+Step 6: Run the Docker Container
+bash
+Copy
+Edit
+docker run -p 5000:5000 flask-docker-app
+Expected Output:
+
+bash
+Copy
+Edit
+ * Serving Flask app 'app'
+ * Running on all addresses (0.0.0.0)
+ * Running on http://0.0.0.0:5000
+Now, open your browser and go to: http://localhost:5000
+You should see:
+
+csharp
+Copy
+Edit
+Hello, Docker from Flask!
+🧹 Optional Step: Stop the Container
+Press CTRL + C in the terminal running the container.
+Or you can find and stop the container with:
+
+bash
+Copy
+Edit
+docker ps           # find container ID
+docker stop <container_id>
+✅ Summary:
+Step	Description
+1	Created project folder
+2	Wrote a basic Flask app
+3	Added dependencies
+4	Wrote Dockerfile
+5	Built Docker image
+6	Ran Docker container and verified output
