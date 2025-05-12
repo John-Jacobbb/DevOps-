@@ -1,0 +1,126 @@
+Great! Now that you've downloaded the ZIP file (k8s-docker-demo.zip), here’s a step-by-step guide to run the Docker + Kubernetes demo in Visual Studio Code (VS Code):
+
+🛠️ Prerequisites
+
+Ensure these tools are installed on your system:
+
+Docker Desktop 🐳 (https://www.docker.com/products/docker-desktop)
+
+Node.js (https://nodejs.org)
+
+Minikube (https://minikube.sigs.k8s.io/docs/start/)
+
+kubectl CLI
+
+Visual Studio Code (https://code.visualstudio.com/)
+
+VS Code Extensions:
+
+Docker Extension
+
+Kubernetes Extension (by Microsoft)
+
+🔧 Step-by-Step Instructions in VS Code
+
+Step 1: Extract the ZIP File
+
+Locate k8s-docker-demo.zip and extract it.
+
+Open the folder in VS Code:
+
+bash
+Copy
+Edit
+File → Open Folder → Select "k8s-docker-demo"
+Step 2: Install Node.js Dependencies
+
+In the VS Code terminal:
+
+bash
+Copy
+Edit
+npm install
+Expected Output:
+
+bash
+Copy
+Edit
++ express@4.18.2
+added 50 packages...
+Step 3: Run the App Locally (Optional)
+
+To test the app locally before Dockerizing:
+
+bash
+Copy
+Edit
+node app.js
+Then visit http://localhost:3000 in your browser.
+
+Expected Output:
+
+csharp
+Copy
+Edit
+Hello from Docker + Kubernetes!
+🐳 Step 4: Build the Docker Image
+
+Make sure Docker Desktop is running. Then build the image:
+
+bash
+Copy
+Edit
+docker build -t yourusername/k8s-demo-app .
+Step 5: Run Docker Container Locally (Optional)
+
+bash
+Copy
+Edit
+docker run -p 3000:3000 yourusername/k8s-demo-app
+Visit http://localhost:3000 again to verify.
+
+Step 6: Push Docker Image to Docker Hub
+
+First, login:
+
+bash
+Copy
+Edit
+docker login
+Then:
+
+bash
+Copy
+Edit
+docker push yourusername/k8s-demo-app
+—
+
+☸️ Step 7: Start Minikube & Apply Kubernetes Files
+
+Start Minikube:
+
+bash
+Copy
+Edit
+minikube start
+Apply deployment:
+
+bash
+Copy
+Edit
+kubectl apply -f deployment.yaml
+Expose the service:
+
+bash
+Copy
+Edit
+kubectl expose deployment k8s-demo-deployment --type=NodePort --port=3000
+Get the service URL:
+
+bash
+Copy
+Edit
+minikube service k8s-demo-deployment --url
+Click on the generated URL in your browser to see the message.
+
+Expected: “Hello from Docker + Kubernetes!”
