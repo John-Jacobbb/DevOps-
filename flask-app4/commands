@@ -1,0 +1,116 @@
+. Install VSCode
+If you haven't already installed Visual Studio Code, you can download it from here.
+
+2. Install Python Extension for VSCode
+Open VSCode.
+
+Go to the Extensions view (click on the Extensions icon in the sidebar or press Ctrl+Shift+X).
+
+Search for Python and install the official Python extension by Microsoft.
+
+3. Set Up Your Flask Project in VSCode
+Open Your Project Folder in VSCode
+Open VSCode.
+
+Go to File > Open Folder and choose the flask-app folder you created earlier, or create a new folder for your project.
+
+Create a Virtual Environment
+Open the integrated terminal in VSCode by clicking Terminal > New Terminal or pressing Ctrl+` (backtick).
+
+In the terminal, create a virtual environment:
+
+bash
+Copy
+Edit
+python -m venv venv
+Activate the Virtual Environment
+For Windows:
+
+bash
+Copy
+Edit
+.\venv\Scripts\activate
+For macOS/Linux:
+
+bash
+Copy
+Edit
+source venv/bin/activate
+Once activated, your terminal prompt should show (venv).
+
+Install Flask
+With the virtual environment activated, install Flask:
+
+bash
+Copy
+Edit
+pip install Flask
+Create Your Flask App (app.py)
+In the Explorer on the left, click on the New File icon and name the file app.py.
+
+Paste the following simple Flask code into app.py:
+
+python
+Copy
+Edit
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return 'Hello, World!'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+4. Run Your Flask App in VSCode
+In the VSCode terminal, make sure your virtual environment is activated and you are in the correct folder (flask-app).
+
+Run the Flask app with:
+
+bash
+Copy
+Edit
+python app.py
+You should see the Flask server running, and you can open your browser to http://127.0.0.1:5000/ to view "Hello, World!".
+
+5. Set Up Git and Push to GitHub
+Initialize Git in VSCode
+Open the integrated terminal (if it's not open already).
+
+In the terminal, initialize a Git repository:
+
+bash
+Copy
+Edit
+git init
+Create .gitignore
+In the Explorer, right-click and choose New File.
+
+Name it .gitignore and add the following content to ignore unnecessary files:
+
+markdown
+Copy
+Edit
+venv/
+__pycache__/
+*.pyc
+Stage and Commit Your Code
+Open the Source Control view (click the Git icon on the sidebar).
+
+Click on + to stage your files, then enter a commit message like "Initial commit with Flask app" and click ✔️ Commit.
+
+Push to GitHub
+Go to GitHub and create a new repository for your project.
+
+In the VSCode terminal, link your local Git repository to GitHub:
+
+bash
+Copy
+Edit
+git remote add origin https://github.com/your-username/flask-app.git
+Push your changes to GitHub:
+
+bash
+Copy
+Edit
+git push -u origin master
