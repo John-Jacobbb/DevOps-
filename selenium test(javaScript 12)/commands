@@ -1,0 +1,131 @@
+✅ Q12: Write a simple JavaScript program and perform testing using Selenium
+🌟 STEP 1: Create a simple JavaScript program
+🔹 Create an HTML file like this:
+📄 index.html
+
+html
+Copy
+Edit
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Test Page</title>
+</head>
+<body>
+  <h2>Testing JavaScript</h2>
+  <button id="myButton">Click Me</button>
+  <p id="myText">Hello</p>
+
+  <script>
+    document.getElementById("myButton").onclick = function() {
+      document.getElementById("myText").innerText = "You clicked the button!";
+    };
+  </script>
+</body>
+</html>
+
+
+
+    
+✅ What this does:
+It shows a button and a paragraph.
+
+When you click the button, the paragraph text changes from Hello to You clicked the button!.
+
+🌟 STEP 2: Setup Selenium to test this
+  
+🧩 Requirements:
+Node.js and npm (Install from https://nodejs.org)
+
+Google Chrome
+
+Code Editor (like VS Code)
+
+🌟 STEP 3: Setup your project
+Open a folder in VS Code or any terminal.
+
+Run the following commands:
+
+bash
+Copy
+Edit
+
+
+
+
+npm init -y              # Initialize npm project
+npm install selenium-webdriver  # Install Selenium
+
+
+
+  
+🌟 STEP 4: Create the test file
+📄 test.js
+
+javascript
+Copy
+Edit
+
+
+
+
+
+
+
+
+const { Builder, By, until } = require('selenium-webdriver');
+
+(async function test() {
+  let driver = await new Builder().forBrowser('chrome').build();
+
+  try {
+    // Open your HTML file (change the path to match yours)
+    await driver.get('file:///C:/Users/YourName/Desktop/index.html');
+
+    // Click the button
+    await driver.findElement(By.id('myButton')).click();
+
+    // Wait until the text changes
+    let para = await driver.findElement(By.id('myText'));
+    await driver.wait(until.elementTextIs(para, 'You clicked the button!'), 5000);
+
+    // Print the result
+    let result = await para.getText();
+    console.log("Final text is:", result);
+  } finally {
+    await driver.quit();
+  }
+})();
+
+
+
+
+📌 Change the file path file:///C:/Users/YourName/Desktop/index.html to the actual path of your HTML file.
+
+
+
+
+🌟 STEP 5: Run the test
+In your terminal:
+
+bash
+Copy
+Edit
+
+
+
+node test.js
+
+  
+✅ Expected Output in terminal:
+vbnet
+Copy
+Edit
+
+
+
+Final text is: You clicked the button!
