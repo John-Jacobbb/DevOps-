@@ -1,0 +1,140 @@
+To set up Selenium for automated testing using Spring Boot with Spring Initializr in Eclipse, follow these steps:
+
+Step 1: Install Java Development Kit (JDK)
+Make sure you have the Java Development Kit (JDK) installed, as Selenium requires it. If you haven't installed it yet, follow the installation instructions for JDK from the Oracle website.
+
+Verify Installation:
+
+bash
+Copy
+Edit
+java -version
+Step 2: Install Eclipse IDE
+If you haven't already installed Eclipse, you can download it from Eclipse Downloads. Ensure you're using Eclipse IDE for Java Developers.
+
+Step 3: Create a Spring Boot Project with Spring Initializr
+Open Eclipse and go to File > New > Project...
+
+Select Spring Starter Project under Spring.
+
+Click Next.
+
+Configure the Project using Spring Initializr:
+
+Group: com.example
+
+Artifact: selenium-test
+
+Name: selenium-test
+
+Type: Maven Project
+
+Packaging: Jar
+
+Java Version: 8 or 11 (depending on your setup)
+
+Add Dependencies:
+
+Spring Web: For the web layer (optional, for testing APIs if needed).
+
+Spring Boot DevTools: For easier development (optional).
+
+Spring Boot Starter Test: For writing and running tests.
+
+Click Finish to generate the project.
+
+Step 4: Add Selenium Dependency to pom.xml
+Once your project is created, navigate to the pom.xml file and add the Selenium dependency under the <dependencies> section:
+
+xml
+Copy
+Edit
+<dependencies>
+    <!-- Other existing dependencies -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.141.59</version>
+    </dependency>
+</dependencies>
+This will allow you to use the Selenium WebDriver in your Spring Boot project.
+
+Step 5: Download WebDriver for Your Browser
+You need a WebDriver to interact with your browser. Download the appropriate driver for the browser you want to use:
+
+Chrome: ChromeDriver
+
+Firefox: GeckoDriver
+
+Extract the driver and place it in a folder. Add the path to the WebDriver in your code.
+
+Step 6: Create Selenium Test Class
+In Eclipse, go to src/main/java/com/example/seleniumtest/.
+
+Create a new Java class called SeleniumTest inside the com.example.seleniumtest package.
+
+Write the Selenium WebDriver code in SeleniumTest.java:
+
+java
+Copy
+Edit
+package com.example.seleniumtest;
+
+
+
+
+
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class SeleniumTest {
+    public static void main(String[] args) {
+        // Set the path to the ChromeDriver (update with your actual path)
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+        // Initialize ChromeDriver
+        WebDriver driver = new ChromeDriver();
+
+        // Open a website
+        driver.get("https://www.google.com");
+
+        // Print the title of the page
+        System.out.println("Page Title: " + driver.getTitle());
+
+        // Close the browser
+        driver.quit();
+    }
+}
+
+
+
+
+
+
+
+Make sure to replace "path/to/chromedriver" with the actual path to your chromedriver.exe or the browser driver you're using.
+
+Step 7: Run the Selenium Test
+Right-click on SeleniumTest.java in the Eclipse Project Explorer.
+
+Select Run As > Java Application.
+
+Expected Output:
+
+The Chrome browser will open and navigate to "https://www.google.com".
+
+The page title "Google" will be printed in the Eclipse console.
+
+The browser will close automatically after the test is completed.
+
+Step 8: Troubleshoot (if needed)
+If you face issues with the WebDriver path, make sure it's correctly specified in the code.
+
+Ensure the chromedriver version is compatible with the version of Chrome you're using.
+
+Step 9: Build and Run Tests (Optional)
+To use Spring Boot’s testing capabilities, you can create unit tests for your Selenium code by using @SpringBootTest. However, Selenium tests are typically separate from the standard Spring Boot tests, and running them as Java applications is common.
+
+Let me know if you need more guidance!
