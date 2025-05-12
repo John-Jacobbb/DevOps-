@@ -1,0 +1,155 @@
+Your project ZIP file has been created successfully. You can download it using the link below:
+
+🔽 Download k8s-demo-app.zip
+
+Let me know if you want a PDF version or a README included as well. 
+
+
+
+
+
+
+
+You said:
+now give me steps to run the following practical in vs code
+
+
+ChatGPT said:
+Sure! Below are the step-by-step instructions to run your Kubernetes-based containerized application using Visual Studio Code (VS Code):
+
+🧩 Prerequisites Before You Start
+
+Make sure the following are installed:
+
+Node.js (v18+)
+
+Docker
+
+Minikube (or Docker Desktop with Kubernetes)
+
+kubectl
+
+Visual Studio Code (VS Code)
+
+VS Code Extensions:
+
+Docker
+
+Kubernetes
+
+YAML
+
+🚀 Step-by-Step Guide to Run the Practical in VS Code
+
+🟢 Step 1: Open the Project in VS Code
+
+Extract the downloaded zip file: k8s-demo-app.zip
+
+Open VS Code.
+
+Go to File → Open Folder → Select the unzipped folder (k8s-demo-app).
+
+✅ You should see the following files:
+
+app.js
+
+package.json
+
+Dockerfile
+
+deployment.yaml
+
+service.yaml
+
+🐳 Step 2: Build and Run Docker Image Locally (Optional Test)
+
+Open the terminal in VS Code (Ctrl + `) and run:
+
+bash
+Copy
+Edit
+docker build -t k8s-demo-app .
+docker run -p 3000:3000 k8s-demo-app
+Open http://localhost:3000 in your browser to confirm it's working.
+
+Press Ctrl+C to stop the container.
+
+☁️ Step 3: Push Docker Image to Docker Hub (Once)
+
+Login to Docker:
+
+bash
+Copy
+Edit
+docker login
+Tag the image:
+
+bash
+Copy
+Edit
+docker tag k8s-demo-app your-dockerhub-username/k8s-demo-app
+Push it:
+
+bash
+Copy
+Edit
+docker push your-dockerhub-username/k8s-demo-app
+🌐 Replace your-dockerhub-username in deployment.yaml too!
+
+☸️ Step 4: Start Kubernetes with Minikube
+
+bash
+Copy
+Edit
+minikube start
+👀 To enable the Docker image from local system instead of Docker Hub (for dev):
+
+bash
+Copy
+Edit
+eval $(minikube docker-env)
+docker build -t k8s-demo-app .
+(Then update deployment.yaml to use image: k8s-demo-app)
+
+📦 Step 5: Apply Kubernetes Manifests
+
+In VS Code terminal:
+
+bash
+Copy
+Edit
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+Expected Output:
+
+bash
+Copy
+Edit
+deployment.apps/k8s-demo-deployment created
+service/k8s-demo-service created
+🔍 Step 6: Access Your App
+
+Get Minikube IP:
+
+bash
+Copy
+Edit
+minikube ip
+Access in browser:
+
+cpp
+Copy
+Edit
+http://<minikube-ip>:30080
+You should see: Hello from Kubernetes!
+
+🧼 Step 7: Cleanup
+
+To stop and delete everything:
+
+bash
+Copy
+Edit
+kubectl delete -f deployment.yaml
+kubectl delete -f service.yaml
+minikube stop
