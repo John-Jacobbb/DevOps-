@@ -1,0 +1,109 @@
+Develop a simple application (e.g., a basic content manager using Flask) and use Docker commands to:
+
+Containerize it
+
+Build and run it using Docker
+
+Manage its content using Docker volumes
+
+Demonstrate common Docker commands during this process
+
+🧱 Step-by-Step Plan
+✅ Step 1: Set up the application (Content Manager)
+We’ll use Python + Flask to create a minimal content management app.
+
+1.1. Create the project structure:
+css
+Copy
+Edit
+docker-content-manager/
+├── app/
+│   ├── app.py
+│   └── content.txt
+├── Dockerfile
+├── requirements.txt
+└── README.md
+1.2. app.py
+python
+Copy
+Edit
+from flask import Flask, request
+
+app = Flask(__name__)
+FILE_PATH = "content.txt"
+
+@app.route('/')
+def index():
+    with open(FILE_PATH, 'r') as f:
+        return f"<pre>{f.read()}</pre>"
+
+@app.route('/add', methods=['POST'])
+def add_content():
+    data = request.form.get('data')
+    with open(FILE_PATH, 'a') as f:
+        f.write(data + "\n")
+    return "Content added!"
+1.3. content.txt
+txt
+Copy
+Edit
+Initial content line.
+1.4. requirements.txt
+ini
+Copy
+Edit
+Flask==2.3.2
+✅ Step 2: Create Dockerfile
+Dockerfile
+Copy
+Edit
+# Use Python base image
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy files
+COPY app /app
+
+# Install dependencies
+RUN pip install -r requirements.txt
+
+# Expose the port Flask runs on
+EXPOSE 5000
+
+# Start the application
+CMD ["python", "app.py"]
+✅ Step 3: Build the Docker Image
+bash
+Copy
+Edit
+docker build -t content-manager .
+✅ Step 4: Run the Docker Container (Basic)
+bash
+Copy
+Edit
+docker run -p 5000:5000 content-manager
+Visit: http://localhost:5000 in your browser.
+
+✅ Step 5: Add a Docker Volume to persist content
+bash
+Copy
+Edit
+docker volume create content_data
+
+docker run -p 5000:5000 -v content_data:/app content-manager
+🔁 Now content.txt data will persist even if the container stops or is removed.
+
+✅ Step 6: Demonstrate Docker Commands (Explain + Practice)
+Task	Command	Description
+Build image	docker build -t content-manager .	Creates an image
+Run container	docker run -p 5000:5000 content-manager	Runs app
+With volume	docker run -v content_data:/app ...	Persists content
+List containers	docker ps -a	Shows all containers
+Stop container	docker stop <container_id>	Stops running one
+Remove container	docker rm <container_id>	Deletes container
+List volumes	docker volume ls	Shows created volumes
+Remove volume	docker volume rm content_data	Deletes named volume
+Enter container	docker exec -it <container_id> bash	Shell access
+
