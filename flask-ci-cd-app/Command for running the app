@@ -1,0 +1,70 @@
+✅ Easiest Fix: Use a Virtual Environment (Safe + Clean)
+This avoids messing with your global Python installation and works 99% of the time.
+
+🛠 Follow These Exact Steps:
+1. Create Virtual Environment
+In your terminal:
+bash
+Copy
+Edit
+
+python -m venv venv
+
+
+2. Activate It
+Run the right command based on your shell:
+For PowerShell (your case):
+bash
+Copy
+Edit
+
+.\venv\Scripts\Activate.ps1
+
+
+If using CMD:
+bash
+Copy
+Edit
+
+venv\Scripts\activate.bat
+
+
+➡️ You should now see something like this at the beginning of your terminal:
+scss
+Copy
+Edit
+(venv) PS C:\Users\ASUS\Documents\My Games\DevOps-\flask-ci-cd-app>
+
+3. Install Requirements (Inside venv)
+Now install the packages without permission issues:
+bash
+Copy
+Edit
+
+pip install -r requirements.txt
+
+
+✅ This will install everything in the local venv folder, not your system Python — so no more flask.exe.deleteme errors.
+
+4. Run Your App
+bash
+Copy
+Edit
+
+
+python app.py
+
+
+Then go to:
+cpp
+Copy
+Edit
+http://127.0.0.1:5000
+5. (Optional) Run Tests
+After stopping the app (Ctrl + C):
+
+bash
+Copy
+Edit
+pytest
+If you’d like, I can create a simple one-click script (setup.bat) to automate all this in Windows. Would that help?
