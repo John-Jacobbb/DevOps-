@@ -1,0 +1,32 @@
+✅ Run It On Your Machine
+🟢 Without Docker:
+Open terminal in the flask_event_app folder.
+
+Run:
+
+bash
+Copy
+Edit
+
+
+pip install -r requirements.txt
+
+  
+python app.py
+
+  
+Go to http://localhost:5000 in your browser.
+
+🟦 With Docker:
+bash
+Copy
+Edit
+
+
+docker build -t flask-event-app 
+
+  
+docker run -p 5000:5000 flask-event-app
+
+  
+Would you like me to zip this into a downloadable file for you?
