@@ -1,0 +1,14 @@
+{
+  "name": "selenium-login-suite",
+  "version": "1.0.0",
+  "description": "Selenium Test Suite for Login Form Validation",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/*.test.js"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^10.2.0",
+    "selenium-webdriver": "^4.15.0"
+  }
+}
