@@ -78,18 +78,36 @@ CMD ["python", "app.py"]
 bash
 Copy
 Edit
+
+
+
+
 docker build -t content-manager .
+
+
+
 ✅ Step 4: Run the Docker Container (Basic)
 bash
 Copy
 Edit
+
+
+
+
 docker run -p 5000:5000 content-manager
+
+
+
+
 Visit: http://localhost:5000 in your browser.
 
 ✅ Step 5: Add a Docker Volume to persist content
 bash
 Copy
 Edit
+
+
+
 docker volume create content_data
 
 docker run -p 5000:5000 -v content_data:/app content-manager
@@ -97,13 +115,24 @@ docker run -p 5000:5000 -v content_data:/app content-manager
 
 ✅ Step 6: Demonstrate Docker Commands (Explain + Practice)
 Task	Command	Description
+
 Build image	docker build -t content-manager .	Creates an image
+
 Run container	docker run -p 5000:5000 content-manager	Runs app
+
 With volume	docker run -v content_data:/app ...	Persists content
+
 List containers	docker ps -a	Shows all containers
+
 Stop container	docker stop <container_id>	Stops running one
+
+
 Remove container	docker rm <container_id>	Deletes container
+
 List volumes	docker volume ls	Shows created volumes
+
 Remove volume	docker volume rm content_data	Deletes named volume
+
 Enter container	docker exec -it <container_id> bash	Shell access
+
 
