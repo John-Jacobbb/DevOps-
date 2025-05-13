@@ -1,0 +1,39 @@
+🔹 Step 2: Build the Docker Image
+Open your terminal or command prompt in the flask-registration folder and run:
+
+bash
+Copy
+Edit
+
+
+
+docker build -t flask-registration-app .
+
+
+  
+🛠️ What this does:
+
+-t flask-registration-app names your image.
+
+. means Dockerfile is in the current directory.
+
+🔹 Step 3: Run the Docker Container
+bash
+Copy
+Edit
+
+
+docker run -p 5000:5000 flask-registration-app
+
+
+
+  
+🔁 This maps your local port 5000 to the container's port 5000.
+
+🔹 Step 4: Open in Browser
+Visit:
+
+
+👉 http://localhost:5000
+
+You’ll see the registration form. Try entering a name and email.
